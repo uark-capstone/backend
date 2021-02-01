@@ -8,8 +8,8 @@ About
 
 ### Get Postman Ready
 Join here: 
-https://app.getpostman.com/join-team?invite_code=c4e96fbb7a74619003ab107e6799f22c&ws=b9cd9f18-b087-44a8-8f9a-cb2e5937f903
-Then go to Collections > CRUD Operations > whatever folder
+https://app.getpostman.com/join-team?invite_code=c4e96fbb7a74619003ab107e6799f22c&ws=b9cd9f18-b087-44a8-8f9a-cb2e5937f903 <br />
+Then go to Collections > CRUD Operations > whatever folder <br />
 Remember to save requests!! 
 
 ### Get DataGrip Ready
