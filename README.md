@@ -13,6 +13,6 @@ Then go to Collections > CRUD Operations > whatever folder
 Remember to save requests!! 
 
 ### Get DataGrip Ready
-user: cap
-password: p4sswd312
+user: cap <br />
+password: p4sswd312 <br />
 URL: jdbc:mysql://ct10.ddns.uark.edu:3306 
