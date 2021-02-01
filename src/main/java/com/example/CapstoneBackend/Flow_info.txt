@@ -43,16 +43,7 @@ Creating functions that do an action on the entities created.
     called getUserbyName(String name) and then we will call the repository class assuming we have a function in the 
     repository class that allows us to search by name. This should return an entity, int, string etc 
 
-EXAMPLE
-    public class UserCommand{
-       
-        UserRepository userRepo = new userRepo(); 
-
-        public UserEntity getUserByFirstName(String name){
-            return userRepo.findbyName(name);
-        }
-
-    }
+EXAMPLE: see the UserCommands.java 
 
 5) Make a Controller
 Our controllers allow us to make our endpoints or to call other APIs. We will most likely be using
@@ -60,5 +51,4 @@ GET, POST, DELETE, and maybe put idk tho that's up to how we wanna do certain ca
 
 In this example, we would need to do a GET request because we are wanting info on Allison.
 
-EXAMPLE
-// copy paste in here soon
+EXAMPLE: see UserController.java

@@ -2,7 +2,7 @@ package com.example.CapstoneBackend.DTO;
 
 
 
-public class UserDTO {
+public class UserDTO  {
 
     /*
     As you can see we are missing many elements of User. That is why we are using DTOs. 
@@ -15,7 +15,6 @@ public class UserDTO {
     int id; 
     String name;
 
-    //just need an empty constructor
     public UserDTO(){}
 
     public int getId() {

@@ -1,9 +1,23 @@
 WHAT IS A CONTROLLER?
-Controllers allow us to perform API calls or to create them ourselves. 
-We can call other endpoints by using the @GET annotation or @POST to 
-send data to other services. 
+Controllers allow us to perform API calls or to create an API ourselves. 
+We can call other endpoints by using the @GET annotation and we can use the @POST to 
+receive objects from the user.
 
 WHAT WILL OUR CONTROLLERS RETURN? 
 It will return a ResponseEntity with a http status and DTO attached to it. 
+
+
+@GetMapping("/get/{id}")
+    ResponseEntity<Object> getByID(@PathVariable int id) {
+        UserDTO userDTO = userCommands.getUserByID(id);
+        return ResponseEntity.status(HttpStatus.OK).body(userDTO);
+    }
+
+ResponseEntity<T> where T represents the type to be returned. In our case the T will be an Object as it can 
+return a DTO or even just a String. 
+.status(HttpStatus.OK) will return 200 stating the endpoint worked correctly. 
+There are other constants such as HttpStatus.NOT_FOUND which represents 404
+
+.body(T t) the body holds the actual DTO or error message
 
 Note: no business logic should be here. We will be calling the Command classes

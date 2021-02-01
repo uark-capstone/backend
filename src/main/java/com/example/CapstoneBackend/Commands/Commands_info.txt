@@ -10,5 +10,9 @@ WHERE WILL THIS BE USED?
 Commands will be used in the Controller classes
 
 WHAT CLASSES WILL BE IN THIS?
+A repository class and an entity class. 
 Anytime we wanna talk to the db, we will call a Repository class to return
-entities. With our returned entity, we could call a getter to return a specific value. 
+an entity to a Controller class. 
+
+If we add error handling, have it throw an error and we will handle this thrown error in the 
+Controller class!
