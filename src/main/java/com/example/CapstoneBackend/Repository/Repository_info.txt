@@ -1,0 +1,8 @@
+WHAT IS A REPOSITORY?
+It allows us to call CRUD (create, read, update, delete) APIs on our entities. 
+We can also create findby[whatever variable we have]. For the create spelling,
+look at documentation- forgot exactly, but it will map our own variables to 
+these more specific APIs. 
+
+WHO USES REPOSITORIES?
+The Command class will use it to make changes or read from our db. 

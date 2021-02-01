@@ -1,0 +1,19 @@
+WHAT IS A DATA TRANSFERABLE OBJECT (DTO)? 
+This is also called a model (kinda like in SE). Essentially, we have DTOs
+so we can dictate what information we send out of our APIs. 
+For example, if we returned an entity to the user, then the user has access to 
+ALL info associated with the entity. So by mapping a DTO to the entity, then we 
+have more control of what we send out. 
+
+For ex:
+Say we have a UserEntity that holds firstName, lastName, password.
+We could create a UserNonEssentialsDTO that stores firstName, lastName. 
+This DTO will then be return to our user in a Controller class and does not have the password. 
+
+It's good practice to not have our entities fully exposed to the end user.
+For this project, our DTO and Entities may look identical. But if there's any data
+from our db that we don't want to display directly, then this is a good option. 
+
+
+*Remember to create an empty constructor - spring will do some type of weird matching
+so it does handles all the setters

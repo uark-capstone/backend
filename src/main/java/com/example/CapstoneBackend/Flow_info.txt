@@ -1,0 +1,64 @@
+SO HOW DOES THIS ALL WORK? 
+
+Let's say we want to make an endpoint that returns a user named Allison
+
+1) Make an entity. 
+    Entity will need to have all the values from our DB along with getters and setters. 
+    This will also need constructors; one for a new object (so empty params) amd one for an 
+    already create object. 
+
+    EXAMPLE
+    class User{ 
+        String firstName;
+        String password;
+
+        //getters & setters 
+    }
+
+2) Make a DTO for the entity. 
+    This will need getters and setters. Could look identical to entity or not. 
+    Whatever we want the user to see should be a variable. But if it's "confidential" information
+    then don't make it a variable. 
+
+EXAMPLE
+    class UserNonEssentialsDTO{ 
+        String firstName;
+        //getters & setters 
+    }
+
+
+3) Make a Repository.
+    The repository should hold all functions we want to happen to the entity in the DB.
+    Create a new one? Edit an entity? Just examples.
+
+EXAMPLE
+    public interface UserRepository extends CRUDRepositiry< UserEntity, UUID> {
+        UserEntity findbyName(String name)
+    }
+
+4)Make a Command class
+Creating functions that do an action on the entities created.  
+
+    Say we want to see if a user by the name Allison exists. Then we must create a function
+    called getUserbyName(String name) and then we will call the repository class assuming we have a function in the 
+    repository class that allows us to search by name. This should return an entity, int, string etc 
+
+EXAMPLE
+    public class UserCommand{
+       
+        UserRepository userRepo = new userRepo(); 
+
+        public UserEntity getUserByFirstName(String name){
+            return userRepo.findbyName(name);
+        }
+
+    }
+
+5) Make a Controller
+Our controllers allow us to make our endpoints or to call other APIs. We will most likely be using
+GET, POST, DELETE, and maybe put idk tho that's up to how we wanna do certain calls. 
+
+In this example, we would need to do a GET request because we are wanting info on Allison.
+
+EXAMPLE
+// copy paste in here soon

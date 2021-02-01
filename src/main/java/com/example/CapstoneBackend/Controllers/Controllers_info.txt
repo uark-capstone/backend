@@ -1,0 +1,9 @@
+WHAT IS A CONTROLLER?
+Controllers allow us to perform API calls or to create them ourselves. 
+We can call other endpoints by using the @GET annotation or @POST to 
+send data to other services. 
+
+WHAT WILL OUR CONTROLLERS RETURN? 
+It will return a ResponseEntity with a http status and DTO attached to it. 
+
+Note: no business logic should be here. We will be calling the Command classes
