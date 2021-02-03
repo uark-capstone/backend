@@ -1,6 +1,6 @@
 CREATE TABLE `lectures` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `class_id` int,
+  `class_id` varchar(100),
   `lecture_name` varchar(255),
   `lecture_start_time` timestamp,
   `lecture_end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
