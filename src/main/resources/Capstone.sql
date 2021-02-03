@@ -8,14 +8,14 @@ CREATE TABLE `lectures` (
 );
 
 CREATE TABLE `classes` (
-  `id` int PRIMARY KEY,
+  `id` varchar(100) PRIMARY KEY,
   `professor_id` int,
   `course_name` varchar(255),
   `student_count` int
 );
 
 CREATE TABLE `class_roster` (
-  `class_id` int,
+  `class_id` varchar(100) PRIMARY KEY,
   `user_id` int
 );
 
