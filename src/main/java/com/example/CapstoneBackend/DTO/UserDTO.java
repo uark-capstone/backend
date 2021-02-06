@@ -11,6 +11,7 @@ public class UserDTO {
      */
 
     int id;
+
     public int getId() {
         return this.id;
     }
@@ -19,8 +20,8 @@ public class UserDTO {
         this.id = id;
     }
 
-
     int classification;
+
     public int getClassification() {
         return this.classification;
     }
@@ -30,6 +31,7 @@ public class UserDTO {
     }
 
     String name;
+
     public String getName() {
         return this.name;
     }
@@ -38,19 +40,18 @@ public class UserDTO {
         this.name = name;
     }
 
-
     String email;
+
     public String getEmail() {
         return this.email;
     }
 
-    public void setPassword(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    //Constructors
+    // Constructors
     public UserDTO() {
     }
-
 
 }
