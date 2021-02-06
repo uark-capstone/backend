@@ -1,23 +1,24 @@
 package com.example.CapstoneBackend.DTO;
 
 public class ClassRosterDTO {
-    String class_id;
+    String classId;
+    int userId;
 
-    public String getClass_id() {
-        return this.class_id;
+    public String getclassId() {
+        return this.classId;
     }
 
-    public void setClass_id(String class_id) {
-        this.class_id = class_id;
+    public void setclassId(String classId) {
+        this.classId = classId;
     }
 
-    int user_id;
-
-    public int getUser_id() {
-        return this.user_id;
+    public int getuserId() {
+        return this.userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setuserId(int userId) {
+        this.userId = userId;
     }
+
+    
 }
