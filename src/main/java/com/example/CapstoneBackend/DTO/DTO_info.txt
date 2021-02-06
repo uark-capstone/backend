@@ -18,4 +18,7 @@ from our db that we don't want to display directly, then this is a good option.
 *Remember to create an empty constructor - spring will do some type of weird matching
 so it does handles all the setters
 
+When our objects have a large number of fields with different access levels, it's quite common
+to implement the DTO pattern.
+
 

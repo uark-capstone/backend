@@ -2,12 +2,12 @@ package com.example.CapstoneBackend.Entity;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name = "users")
 public class UserEntity {
 
+    public UserEntity(){}; 
+     
     @Id
     @Column(name="id",  updatable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -67,7 +67,7 @@ public class UserEntity {
      */
 
 
-    public UserEntity(){}; 
+    // public UserEntity(){}; 
 
 }
 
