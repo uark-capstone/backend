@@ -11,7 +11,7 @@ public class ClassRosterEntity {
     @Id
     @Column(name="class_id", updatable = false)
     public String class_id = "";
-    public int getclass_id() {
+    public String getclass_id() {
         return this.class_id;
     }
 
