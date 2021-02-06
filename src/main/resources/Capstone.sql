@@ -15,8 +15,10 @@ CREATE TABLE `classes` (
 );
 
 CREATE TABLE `class_roster` (
-  `class_id` varchar(100) PRIMARY KEY,
-  `user_id` int
+  `id` int NOT NULL AUTO_INCREMENT
+  `class_id` varchar(100),
+  `user_id` int,
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `users` (

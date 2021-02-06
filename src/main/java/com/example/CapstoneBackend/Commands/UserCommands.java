@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * UserCommands holds all the functions that apply to the UserEntity class
- */
+ */ 
 @Service
 public class UserCommands {
     @Autowired // autowire allows us to automatically create a UserRepository instance and use

@@ -21,3 +21,6 @@ There are other constants such as HttpStatus.NOT_FOUND which represents 404
 .body(T t) the body holds the actual DTO or error message
 
 Note: no business logic should be here. We will be calling the Command classes
+
+
+Hello Gager98
