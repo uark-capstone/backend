@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ClassRosterRepository extends CrudRepository<ClassRosterEntity, String> {
 
-    Optional<ClassRosterEntity>findByclassId(String classId);
+    Optional<ClassRosterEntity>findByClassId(String ClassId);
 
-    void delete (ClassRosterEntity classRosterEntity);
+    //void delete (ClassRosterEntity classRosterEntity); // kind of redundant
 }
