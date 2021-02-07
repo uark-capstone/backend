@@ -37,6 +37,28 @@ public class CustomExceptions {
       }
   }
 
+  //INCORRECT LOGIN INFO
+  public static class IncorrectLoginException extends RuntimeException
+  {
+    private static final long serialVersionUID = 1L;
+
+      public IncorrectLoginException() {
+        super("Failed login attempt!");
+      }
+  }
+
+    //ERROR IN LOGGING OUT
+    public static class LoggingOutException extends RuntimeException
+    {
+      private static final long serialVersionUID = 1L;
+  
+        public LoggingOutException() {
+          super("Logout attempt failed!");
+        }
+    }
+
+
+
 
 
 }

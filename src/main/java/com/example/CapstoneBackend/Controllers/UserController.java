@@ -35,10 +35,10 @@ public class UserController {
                     MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Object> postBody(@RequestBody UserEntity userEntity) {
-        
+
         try {
             userCommands.createNewUser(userEntity);
-            return ResponseEntity.status(HttpStatus.OK).body(userEntity.getName()+ " was added!");
+            return ResponseEntity.status(HttpStatus.OK).body(userEntity.getName() + " was added!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -75,15 +75,15 @@ public class UserController {
     @RequestMapping(value = "/deleteUserByEmail", params = { "email" }, method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<Object> deleteUser(@RequestParam("email") String email) {
-        try{
-            userCommands.deleteUser(email); 
-            return ResponseEntity.status(HttpStatus.OK).body("User tied to "+email+" has been deleted.");
-        }catch(Exception e){
+        try {
+            userCommands.deleteUser(email);
+            return ResponseEntity.status(HttpStatus.OK).body("User tied to " + email + " has been deleted.");
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
-    //DELETE EVERYONE FROM DB
+    // DELETE EVERYONE FROM DB
     @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<Object> deleteAll() {
@@ -96,5 +96,37 @@ public class UserController {
         }
     }
 
+    // USER LOGIN
+    @RequestMapping(value = "/login", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> userLogin(@RequestBody UserEntity userEntity) {
+        userCommands.loginUser(userEntity);
+        try {
+            // userCommands.loginUser(userEntity);
+            System.out.println("ented in login try");
+            return ResponseEntity.status(HttpStatus.OK).body(userEntity.getEmail() + " was logged in!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    //USER LOGOUT
+    @RequestMapping(value = "/loggingOut", consumes = { MediaType.APPLICATION_JSON_VALUE,
+        MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
+@ResponseBody
+public ResponseEntity<Object> userLogOut(@RequestBody UserEntity userEntity) {
+    
+    try {
+        System.out.println("entered logging out");
+        userCommands.loggingOut(userEntity);
+        return ResponseEntity.status(HttpStatus.OK).body(userEntity.getEmail() + " was logged out!");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+}
 
 }

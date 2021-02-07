@@ -15,7 +15,7 @@ CREATE TABLE `classes` (
 );
 
 CREATE TABLE `class_roster` (
-  `id` int NOT NULL AUTO_INCREMENT
+  `id` int NOT NULL AUTO_INCREMENT,
   `class_id` varchar(100),
   `user_id` int,
   PRIMARY KEY (`id`)
@@ -27,6 +27,7 @@ CREATE TABLE `users` (
   `name` varchar(255),
   `email` varchar(255),
   `password` varchar(255),
+  `is_logged_in` BOOLEAN default false,
   PRIMARY KEY (`id`)
 );
 

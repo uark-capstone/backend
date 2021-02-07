@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * UserCommands holds all the functions that apply to the UserEntity class
- */ 
+ */
 @Service
 public class UserCommands {
     @Autowired // autowire allows us to automatically create a UserRepository instance and use
@@ -27,7 +27,7 @@ public class UserCommands {
         if (!userEntity.isPresent()) {
             userRepository.save(paramUserEntity);
         } else {
-            throw new CustomExceptions.CreationException("User"); 
+            throw new CustomExceptions.CreationException("User");
         }
 
     }
@@ -82,6 +82,40 @@ public class UserCommands {
             throw new CustomExceptions.NoDeleteException("Users");
         }
 
+    }
+
+    // LOGGING IN A USER
+    public void loginUser(UserEntity paramUserEntity) {
+
+        Optional<UserEntity> userEntity = userRepository.findByemail(paramUserEntity.getEmail());
+
+        try {
+            if (userEntity.isPresent()) {
+                if (paramUserEntity.getPassword().equals(userEntity.get().getPassword())) {
+                    userEntity.get().setIsLoggedIn(true);
+                    userRepository.save(userEntity.get());
+                } else {
+                    throw new CustomExceptions.IncorrectLoginException();
+                }
+            }
+        } catch (Exception e) {
+            throw new CustomExceptions.NotFoundException("User");
+        }
+    }
+
+    // LOGGING IN A USER
+    public void loggingOut(UserEntity paramUserEntity) {
+
+        Optional<UserEntity> userEntity = userRepository.findByemail(paramUserEntity.getEmail());
+
+        try {
+            if (userEntity.isPresent()) {
+                userEntity.get().setIsLoggedIn(false);
+                userRepository.save(userEntity.get());
+            }
+        } catch (Exception e) {
+            throw new CustomExceptions.LoggingOutException();
+        }
     }
 
 }

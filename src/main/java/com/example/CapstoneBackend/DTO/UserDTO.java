@@ -50,6 +50,16 @@ public class UserDTO {
         this.email = email;
     }
 
+    boolean isLoggedIn;
+    public boolean getIsLoggedIn(){
+        return this.isLoggedIn;
+    }
+    public void setIsLoggedIn(boolean isLoggedIn){
+        this.isLoggedIn=isLoggedIn; 
+    }
+
+
+
     // Constructors
     public UserDTO() {
     }

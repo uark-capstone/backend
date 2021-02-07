@@ -7,6 +7,18 @@ import javax.persistence.*;
 public class UserEntity {
 
     public UserEntity(){}; 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", classification='" + getClassification() + "'" +
+            ", name='" + getName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", isLoggedIn='" + getIsLoggedIn() + "'" +
+            "}";
+    }
      
     @Id
     @Column(name="id",  updatable = false)
@@ -59,6 +71,18 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Column(name="is_logged_in")
+    Boolean isLoggedIn; 
+    public Boolean getIsLoggedIn() {
+        return this.isLoggedIn;
+    }
+
+    public void setIsLoggedIn(Boolean isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
+    }
+
+
 
     /**
      * Will probably need to add more constructors here as we start to implement
