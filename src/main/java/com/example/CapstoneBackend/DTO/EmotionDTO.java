@@ -1,0 +1,56 @@
+package com.example.CapstoneBackend.DTO;
+
+import java.sql.Timestamp;
+
+public class EmotionDTO {
+    
+    int lectureID;
+    public int getLecture_id() {
+        return this.lectureID;
+    }
+
+    public void setLecture_id(int lectureID) {
+        this.lectureID = lectureID;
+    }
+
+    int userID; 
+    public int getUserID() {
+        return this.userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    String emotions;
+    public String getEmotions() {
+        return this.emotions;
+    }
+
+    public void setEmotions(String emotions) {
+        this.emotions = emotions;
+    }
+
+    double percent;
+    public double getPercent() {
+        return this.percent;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
+    Timestamp timestamp;
+    public Timestamp getTimestamp() {
+        return this.timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    // Constructors 
+    public EmotionDTO() {
+        
+    }
+}
