@@ -8,6 +8,7 @@ import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller that hosts all endpoints related to: USERS
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -105,7 +107,7 @@ public class UserController {
         userCommands.loginUser(userEntity);
         try {
             // userCommands.loginUser(userEntity);
-            System.out.println("ented in login try");
+            System.out.println("entered in login controller");
             return ResponseEntity.status(HttpStatus.OK).body(userEntity.getEmail() + " was logged in!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
