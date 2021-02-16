@@ -14,11 +14,11 @@ public class EmotionDTO {
     }
 
     int userID; 
-    public int getUserID() {
+    public int getUser_id() {
         return this.userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUser_id(int userID) {
         this.userID = userID;
     }
 

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmotionCommands {
     @Autowired
-
     EmotionRepository emotionRepository;
     
     // create new entry
@@ -24,10 +23,10 @@ public class EmotionCommands {
 
     // dont know how to really do any of this
 
-    // get emotions by user id
-    public EmotionDTO getEmotionByUserID(int id) {
+    // get emotions by user id - this does not work
+    public EmotionDTO getEmotionByUserID(int userID) {
         EmotionDTO emotionDTO = new EmotionDTO();
-        Optional<EmotionEntity> emotionEntity = emotionRepository.findByuserID(id);
+        Optional<EmotionEntity> emotionEntity = emotionRepository.findByuserID(userID);
 
         ModelMapper modelMapper = new ModelMapper();
         emotionDTO = modelMapper.map(emotionEntity.get(), EmotionDTO.class);

@@ -42,7 +42,7 @@ public class EmotionEntity {
     }
 
     @Column(name="emotions")
-    private String emotions;
+    private String emotions = " ";
 
     public String getEmotions(){
         return this.emotions;
