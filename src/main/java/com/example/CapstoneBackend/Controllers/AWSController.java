@@ -38,8 +38,8 @@ public class AWSController {
     public ResponseEntity<String> postBody(@RequestBody AWSDTO awsDTO) {
         try {
             HashMap<String, String> map = new HashMap<>();
-                map.put("user_id", awsDTO.getUserId());
-                map.put("lecture_id", awsDTO.getLectureId());
+                map.put("userId", awsDTO.getUserId());
+                map.put("lectureId", awsDTO.getLectureId());
                 map.put("timestamp", awsDTO.getTs());
                 map.put("base64String", awsDTO.getBase64String());
     
