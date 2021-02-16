@@ -1,9 +1,9 @@
 package com.example.CapstoneBackend.DTO;
 
 
-
 public class AWSDTO {
-    String id;
+    String userId;
+    String lectureId;
     String ts; 
     String base64String; 
 
@@ -12,18 +12,27 @@ public class AWSDTO {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getID() + "'" +
+            " userId='" + getUserId() + "'" +
+            ", lectureId='" + getLectureId() + "'" +
             ", ts='" + getTs() + "'" +
             ", base64String='" + getBase64String() + "'" +
             "}";
     }
 
-    public String getID() {
-        return this.id;
+    public String getUserId() {
+        return this.userId;
     }
 
-    public void setID(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getLectureId() {
+        return this.lectureId;
+    }
+
+    public void setLectureId(String lectureId) {
+        this.lectureId = lectureId;
     }
 
     public String getTs() {
@@ -43,9 +52,3 @@ public class AWSDTO {
     }
     
 }
-
-// {
-//     user_id: 01,
-//   timestamp: blah,
-//   photos: [base64 data]
-// }

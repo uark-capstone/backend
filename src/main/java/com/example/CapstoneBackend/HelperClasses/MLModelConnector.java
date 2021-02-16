@@ -10,7 +10,11 @@ public class MLModelConnector {
     
 
     public void addToRekognitionQueue(HashMap<String, String> data){
-        _restTemplate.postForObject(_pythonServerURL + "rekognition-queue", data, String.class);
+        try{
+            _restTemplate.postForObject(_pythonServerURL + "rekognition-queue", data, String.class);
+        }catch (Exception e){
+            System.out.println("Failed to send data to RekognitionQueue");
+        }
     }
 
 }
