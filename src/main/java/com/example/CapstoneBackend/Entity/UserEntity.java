@@ -74,6 +74,7 @@ public class UserEntity {
 
     @Column(name="is_logged_in")
     Boolean isLoggedIn; 
+    
     public Boolean getIsLoggedIn() {
         return this.isLoggedIn;
     }
