@@ -15,6 +15,7 @@ import com.example.CapstoneBackend.HelperClasses.MLModelConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/AWS")
 public class AWSController {
