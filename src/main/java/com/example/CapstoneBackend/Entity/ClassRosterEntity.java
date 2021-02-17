@@ -11,7 +11,7 @@ public class ClassRosterEntity {
     @Id
     @Column(name="id", updatable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public int id = 0;
+    public int id;
 
     public int getId() {
         return this.id;
@@ -23,7 +23,7 @@ public class ClassRosterEntity {
 
     @Column(name="class_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public String classId = "";
+    public String classId;
 
     public String getclassId() {
         return this.classId;

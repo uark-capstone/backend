@@ -51,6 +51,14 @@ public class ClassesEntity {
     @Column(name = "password")
     private String password;
 
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * Will probably need to add more constructors here as we start to implement
      * more business logic. But for now an empty constructor works cause that's what

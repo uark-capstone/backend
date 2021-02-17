@@ -1,10 +1,12 @@
 package com.example.CapstoneBackend.Controllers;
+
 import com.example.CapstoneBackend.Commands.ClassesCommands;
 import com.example.CapstoneBackend.DTO.ClassesDTO;
 import com.example.CapstoneBackend.Entity.ClassesEntity;
 import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller that hosts all endpoints related to: USERS
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/class")
 public class ClassesController {
@@ -83,7 +86,7 @@ public class ClassesController {
     // DELETE CLASS VIA COURSENAME
     @RequestMapping(value = "/deleteClassByCourseName", params = { "courseName" }, method = RequestMethod.GET)
     @ResponseBody
-    ResponseEntity<Object> deleteClass(@RequestParam("courseNAme") String courseName) {
+    ResponseEntity<Object> deleteClass(@RequestParam("courseName") String courseName) {
         try{
             classesCommands.deleteClass(courseName); 
             return ResponseEntity.status(HttpStatus.OK).body("Class "+courseName+" been deleted.");
