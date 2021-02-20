@@ -5,7 +5,9 @@ import java.util.HashMap;
 import org.springframework.web.client.RestTemplate;
 
 public class MLModelConnector {
-    private String _pythonServerURL = "http://127.0.0.1:5000/";
+    private String _livePythonServerURL = System.getenv("ML_URL");
+    private String _pythonServerURL = (_livePythonServerURL != null) ? _livePythonServerURL : "http://127.0.0.1:5000/";
+
     private RestTemplate _restTemplate = new RestTemplate();
     
 
