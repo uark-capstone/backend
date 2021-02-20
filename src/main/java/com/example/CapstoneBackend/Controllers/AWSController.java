@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://ct10.ddns.uark.edu:5001/"}, maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:3000", "https://ct10.ddns.uark.edu:5001/"}, maxAge = 3600)
 @RestController
 @RequestMapping(value = "/AWS")
 public class AWSController {
