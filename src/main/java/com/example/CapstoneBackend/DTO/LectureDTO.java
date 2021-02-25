@@ -1,6 +1,9 @@
 package com.example.CapstoneBackend.DTO;
 
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LectureDTO {
     
@@ -38,8 +41,19 @@ public class LectureDTO {
         return this.lectureStartTime;
     }
 
-    public void setLectureStartTime(Timestamp lectureStartTime) {
-        this.lectureStartTime = lectureStartTime;
+    // this is not working
+    public void setLectureStartTime(String lectureStartTime) {
+        // try {
+        //     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        //     Date parsedDate = dateFormat.parse(lectureStartTime);
+        //     Timestamp timestamp = new Timestamp(parsedDate.getTime());
+        //     this.lectureStartTime = timestamp;
+        // } catch(Exception e) { 
+        //     // look the origin of excption 
+        // }
+        Timestamp timestamp = Timestamp.valueOf(lectureStartTime);
+        this.lectureStartTime = timestamp;
+        // this.lectureStartTime = lectureStartTime;
     }
 
     public Timestamp getLectureEndTime() {

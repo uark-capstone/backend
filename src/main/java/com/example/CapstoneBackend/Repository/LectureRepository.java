@@ -7,7 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LectureRepository extends CrudRepository<LectureEntity, Integer> {
     // these could all be unnecessary
-    Optional<LectureEntity>findByclassID(int classID);
-    Optional<LectureEntity>findBylectureName(String lectureName);
-    
+    Optional<LectureEntity> findByclassID(int classID);
+
+    Optional<LectureEntity> findBylectureName(String lectureName);
+
+    Optional<LectureEntity> findBylectureNameAndClassID(String lectureName, int classID);
+
 }

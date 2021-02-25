@@ -1,5 +1,7 @@
 package com.example.CapstoneBackend.Controllers;
 
+import java.util.List;
+
 import com.example.CapstoneBackend.Commands.EmotionCommands;
 import com.example.CapstoneBackend.DTO.EmotionDTO;
 import com.example.CapstoneBackend.Entity.EmotionEntity;
@@ -16,38 +18,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(maxAge=3600)
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/emotion")
 public class EmotionController {
-    
+
     @Autowired
     EmotionCommands emotionCommands;
 
     // create entry
     @RequestMapping(value = "/addEmotion", consumes = { MediaType.APPLICATION_JSON_VALUE,
-        MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
+            MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Object> postBody(@RequestBody EmotionEntity emotionEntity) {
-        
+
         try {
             emotionCommands.createEmotionEntry(emotionEntity);
-            return ResponseEntity.status(HttpStatus.OK).body(emotionEntity.getEmotions() + " " +
-                                                        emotionEntity.getUser_id() + " was added.");
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(emotionEntity.getEmotions() + " " + emotionEntity.getUser_id() + " was added.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
-    // get emotion by user id - this does not work
-    @RequestMapping(value = "/getEmotionByUserID", params = {"user_id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/getEmotionsForUser", params = { "user_id", "lecture_id" }, method = RequestMethod.GET)
     @ResponseBody
-    ResponseEntity<Object> getByUserID(@RequestParam("user_id") int userID) {
+    ResponseEntity<Object> getByUserID(@RequestParam("user_id") int userID, @RequestParam("lecture_id") int lectureID) {
 
         try {
-            EmotionDTO emotionDTO = emotionCommands.getEmotionByUserID(userID);
+            List<EmotionDTO> emotionDTO = emotionCommands.getEmotionsForUser(lectureID, userID);
             return ResponseEntity.status(HttpStatus.OK).body(emotionDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getEmotionsByLecture", params = { "lecture_id" }, method = RequestMethod.GET)
+    @ResponseBody
+    ResponseEntity<Object> getEmotionsByLecture(@RequestParam("lecture_id") int lectureID) {
+        try {
+            List<EmotionDTO> emotionsDTO = emotionCommands.getEmotionsByLectureID(lectureID);
+            return ResponseEntity.status(HttpStatus.OK).body(emotionsDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
