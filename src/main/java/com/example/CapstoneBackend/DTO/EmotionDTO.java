@@ -45,8 +45,10 @@ public class EmotionDTO {
         return this.timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    // not sure if should be string or timestamp !!
+    public void setTimestamp(String timestamp) {
+        Timestamp time = Timestamp.valueOf(timestamp);
+        this.timestamp = time;
     }
 
     // Constructors 

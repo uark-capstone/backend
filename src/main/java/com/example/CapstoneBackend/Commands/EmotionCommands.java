@@ -26,6 +26,7 @@ public class EmotionCommands {
         emotionRepository.save(paramEmotionEntity);
     }
 
+    // emotions by user id in a lecture
     public List<EmotionDTO> getEmotionsForUser(int lectureID, int userID) {
         List<EmotionDTO> emotionDTO = new ArrayList<EmotionDTO>();
         List<EmotionEntity> emotionEntity = emotionRepository.getAllEmotionsForUser(lectureID, userID);
@@ -37,6 +38,7 @@ public class EmotionCommands {
         return emotionDTO;
     }
 
+    // all emotions in a lecture
     public List<EmotionDTO> getEmotionsByLectureID(int lectureID) {
         List<EmotionDTO> emotionDTO = new ArrayList<EmotionDTO>();
         List<EmotionEntity> emotionEntities = emotionRepository.getAllEmotionsbylectureID(lectureID);

@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="lectures")
 public class LectureEntity {
@@ -43,28 +45,22 @@ public class LectureEntity {
     }
 
     @Column(name = "lecture_start_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss.SSS")
     private Timestamp lectureStartTime;
     
     public Timestamp getLectureStartTime(){
         return this.lectureStartTime;
     }
 
-    // this does not work
     public void setLectureStartTime(String lectureStartTime) {
-        // try {
-        //     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        //     Date parsedDate = dateFormat.parse(lectureStartTime);
-        //     Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-        //     this.lectureStartTime = timestamp;
-        // } catch(Exception e) { 
-        //     // look the origin of excption 
-        // }
+
         Timestamp timestamp = Timestamp.valueOf(lectureStartTime);
         this.lectureStartTime = timestamp;
         // this.lectureStartTime = timeStamp;
     }
 
     @Column(name = "lecture_end_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss.SSS")
     private Timestamp lectureEndTime;
 
     public Timestamp getLectureEndTime() {
