@@ -23,7 +23,14 @@ public class LectureCommands {
     public void createNewLecture(LectureEntity paramLectureEntity) {
         Optional<LectureEntity> lectureEntity = lectureRepository.findBylectureName(paramLectureEntity
                                                                                     .getLectureName());
-        if(!lectureEntity.isPresent()) {
+        Optional<LectureEntity> lectureClassEntity = lectureRepository.findByclassID(paramLectureEntity.getClass_id());
+
+        if(lectureEntity.isPresent()) {
+            if(!lectureClassEntity.isPresent()) {
+                lectureRepository.save(paramLectureEntity);
+            }
+        } 
+        else if(!lectureEntity.isPresent()) {
             lectureRepository.save(paramLectureEntity);
         } else {
             throw new CustomExceptions.CreationException("Lecture");

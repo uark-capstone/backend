@@ -1,5 +1,7 @@
 package com.example.CapstoneBackend.Commands;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.CapstoneBackend.DTO.EmotionDTO;
@@ -32,6 +34,8 @@ public class EmotionCommands {
         emotionDTO = modelMapper.map(emotionEntity.get(), EmotionDTO.class);
         return emotionDTO;
     }
+
+
     
     
 }
