@@ -1,6 +1,9 @@
 package com.example.CapstoneBackend.Entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 @Entity 
@@ -63,14 +66,17 @@ public class EmotionEntity {
         this.percent = percent;
     }
 
+    // not sure if this should be string
     @Column(name="timestamp")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss.SSS")
     private Timestamp timestamp;
 
     public Timestamp getTimestamp() {
         return this.timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(String timestamp) {
+        Timestamp time = Timestamp.valueOf(timestamp);
+        this.timestamp = time;
     }
 }

@@ -1,8 +1,12 @@
 package com.example.CapstoneBackend.Entity;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="lectures")
@@ -41,17 +45,22 @@ public class LectureEntity {
     }
 
     @Column(name = "lecture_start_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss.SSS")
     private Timestamp lectureStartTime;
     
     public Timestamp getLectureStartTime(){
         return this.lectureStartTime;
     }
 
-    public void setLectureStartTime(Timestamp lectureStartTime) {
-        this.lectureStartTime = lectureStartTime;
+    public void setLectureStartTime(String lectureStartTime) {
+
+        Timestamp timestamp = Timestamp.valueOf(lectureStartTime);
+        this.lectureStartTime = timestamp;
+        // this.lectureStartTime = timeStamp;
     }
 
     @Column(name = "lecture_end_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss.SSS")
     private Timestamp lectureEndTime;
 
     public Timestamp getLectureEndTime() {

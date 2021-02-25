@@ -15,27 +15,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@CrossOrigin(maxAge=3600)
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/lecture")
 public class LectureController {
-    
+
     @Autowired
     LectureCommands lectureCommands;
 
-    @RequestMapping(value = "/addLecture", consumes = {MediaType.APPLICATION_JSON_VALUE,
-        MediaType.APPLICATION_XML_VALUE}, produces = { MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE}, method = RequestMethod.POST)
+    @RequestMapping(value = "/addLecture", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Object> postBody(@RequestBody LectureEntity lectureEntity) {
         try {
             lectureCommands.createNewLecture(lectureEntity);
-            return ResponseEntity.status(HttpStatus.OK).body(lectureEntity.getLectureName()+ " was added.");
+            return ResponseEntity.status(HttpStatus.OK).body(lectureEntity.getLectureName() + " was added.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
+    @RequestMapping(value = "/deleteLecture", params = { "lecture_name", "class_id" }, method = RequestMethod.GET)
+    @ResponseBody
+    ResponseEntity<Object> deleteLecture(@RequestParam("lecture_name") String lectureName,
+            @RequestParam("class_id") int classID) {
+        try {
+            lectureCommands.deleteLecture(lectureName, classID);
+            return ResponseEntity.status(HttpStatus.OK).body("Lecture: '" + lectureName + "' has been deleted.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
 }

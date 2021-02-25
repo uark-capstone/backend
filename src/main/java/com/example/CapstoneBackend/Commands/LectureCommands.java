@@ -21,13 +21,26 @@ public class LectureCommands {
     // (david andrews stores multiple lectures under one name)
     // NEEDS TO ALSO CHECK CLASS ID AND LECTURE NAME
     public void createNewLecture(LectureEntity paramLectureEntity) {
-        Optional<LectureEntity> lectureEntity = lectureRepository.findBylectureName(paramLectureEntity
-                                                                                    .getLectureName());
-        if(!lectureEntity.isPresent()) {
+        Optional<LectureEntity> lectureEntity = lectureRepository
+                .findBylectureNameAndClassID(paramLectureEntity.getLectureName(), paramLectureEntity.getClass_id());
+
+        if (!lectureEntity.isPresent()) {
             lectureRepository.save(paramLectureEntity);
         } else {
             throw new CustomExceptions.CreationException("Lecture");
         }
 
     }
+
+    // Delete Lecture (includes class id in case two classes have the same lecture
+    // name)
+    public void deleteLecture(String lectureName, int classID) {
+        Optional<LectureEntity> lectureEntity = lectureRepository.findBylectureNameAndClassID(lectureName, classID);
+        if (lectureEntity.isPresent()) {
+            lectureRepository.delete(lectureEntity.get());
+        } else {
+            throw new CustomExceptions.NoDeleteException("Lectures");
+        }
+    }
+
 }
