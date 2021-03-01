@@ -3,7 +3,9 @@ package com.example.CapstoneBackend.Controllers;
 import java.util.List;
 
 import com.example.CapstoneBackend.Commands.EmotionCommands;
+import com.example.CapstoneBackend.Commands.UserEmotionsCommands;
 import com.example.CapstoneBackend.DTO.EmotionDTO;
+import com.example.CapstoneBackend.DTO.UserEmotionsDTO;
 import com.example.CapstoneBackend.Entity.EmotionEntity;
 
 import org.springframework.http.*;
@@ -26,6 +28,8 @@ public class EmotionController {
     @Autowired
     EmotionCommands emotionCommands;
 
+    @Autowired
+    UserEmotionsCommands userEmotionsCommands;
     // create entry
     @RequestMapping(value = "/addEmotion", consumes = { MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
@@ -54,6 +58,18 @@ public class EmotionController {
         }
     }
 
+    @RequestMapping(value = "/getEmotionsForUserID", params = { "user_id", "lecture_id" }, method = RequestMethod.GET)
+    @ResponseBody
+    ResponseEntity<Object> getForUserID(@RequestParam("user_id") int userID, @RequestParam("lecture_id") int lectureID) {
+
+        try {
+            List<UserEmotionsDTO> userEmotionDTO = userEmotionsCommands.getEmotionsForUserID(lectureID, userID);
+            return ResponseEntity.status(HttpStatus.OK).body(userEmotionDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/getEmotionsByLecture", params = { "lecture_id" }, method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<Object> getEmotionsByLecture(@RequestParam("lecture_id") int lectureID) {
@@ -61,6 +77,17 @@ public class EmotionController {
             List<EmotionDTO> emotionsDTO = emotionCommands.getEmotionsByLectureID(lectureID);
             return ResponseEntity.status(HttpStatus.OK).body(emotionsDTO);
         } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getEmotionsForLecture", params = {"lecture_id"}, method = RequestMethod.GET)
+    @ResponseBody
+    ResponseEntity<Object> getEmotionsForLecture(@RequestParam("lecture_id") int lectureID) {
+        try {
+            List<UserEmotionsDTO> userEmotionsDTO = userEmotionsCommands.getEmotionsForLecture(lectureID);
+            return ResponseEntity.status(HttpStatus.OK).body(userEmotionsDTO);
+        } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

@@ -104,13 +104,12 @@ public class UserController {
                     MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Object> userLogin(@RequestBody UserEntity userEntity) {
-        userCommands.loginUser(userEntity);
         try {
-            // userCommands.loginUser(userEntity);
-            System.out.println("entered in login controller");
-            return ResponseEntity.status(HttpStatus.OK).body(userEntity.getEmail() + " was logged in!");
+            userCommands.loginUser(userEntity);
+            UserDTO userDTO = userCommands.getUserbyEmail(userEntity.getEmail());
+            return ResponseEntity.status(HttpStatus.OK).body(userDTO);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }
 
