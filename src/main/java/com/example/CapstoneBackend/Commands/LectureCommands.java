@@ -50,9 +50,9 @@ public class LectureCommands {
     public List<LectureDTO> getAllLectures() {
         List<LectureDTO> listLectureDTO= new ArrayList<LectureDTO>();  
         List<LectureEntity> lectureEntities = lectureRepository.findAll();
-        if (lectureEntities != null) {
+        if (lectureEntities.size()!= 0 ) {
             ModelMapper modelMapper = new ModelMapper();
-        listLectureDTO = lectureEntities.stream().map(emotionEntity -> modelMapper.map(lectureEntities, LectureDTO.class))
+        listLectureDTO = lectureEntities.stream().map(lectureEntity -> modelMapper.map(lectureEntity, LectureDTO.class))
                 .collect(Collectors.toList());
         return listLectureDTO; 
         } else {
