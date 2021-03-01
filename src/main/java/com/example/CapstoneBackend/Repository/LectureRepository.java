@@ -1,6 +1,8 @@
 package com.example.CapstoneBackend.Repository;
 
 import com.example.CapstoneBackend.Entity.LectureEntity;
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -12,5 +14,7 @@ public interface LectureRepository extends CrudRepository<LectureEntity, Integer
     Optional<LectureEntity> findBylectureName(String lectureName);
 
     Optional<LectureEntity> findBylectureNameAndClassID(String lectureName, int classID);
+    
+    List<LectureEntity> findAll(); 
 
 }

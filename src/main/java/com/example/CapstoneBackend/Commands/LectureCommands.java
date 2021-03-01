@@ -1,7 +1,11 @@
 package com.example.CapstoneBackend.Commands;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.example.CapstoneBackend.DTO.LectureDTO;
 import com.example.CapstoneBackend.Entity.LectureEntity;
 import com.example.CapstoneBackend.HelperClasses.CustomExceptions;
 import com.example.CapstoneBackend.Repository.LectureRepository;
@@ -42,5 +46,19 @@ public class LectureCommands {
             throw new CustomExceptions.NoDeleteException("Lectures");
         }
     }
+
+    public List<LectureDTO> getAllLectures() {
+        List<LectureDTO> listLectureDTO= new ArrayList<LectureDTO>();  
+        List<LectureEntity> lectureEntities = lectureRepository.findAll();
+        if (lectureEntities != null) {
+            ModelMapper modelMapper = new ModelMapper();
+        listLectureDTO = lectureEntities.stream().map(emotionEntity -> modelMapper.map(lectureEntities, LectureDTO.class))
+                .collect(Collectors.toList());
+        return listLectureDTO; 
+        } else {
+            throw new CustomExceptions.NoDeleteException("Lectures");
+        }
+    }
+
 
 }

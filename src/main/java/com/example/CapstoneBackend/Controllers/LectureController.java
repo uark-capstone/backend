@@ -3,7 +3,10 @@ package com.example.CapstoneBackend.Controllers;
 import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+
 import com.example.CapstoneBackend.Commands.LectureCommands;
+import com.example.CapstoneBackend.DTO.LectureDTO;
 import com.example.CapstoneBackend.Entity.LectureEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,17 @@ public class LectureController {
         try {
             lectureCommands.deleteLecture(lectureName, classID);
             return ResponseEntity.status(HttpStatus.OK).body("Lecture: '" + lectureName + "' has been deleted.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getAllLectures", method = RequestMethod.GET)
+    @ResponseBody
+    ResponseEntity<Object> findAllLectures() {
+        try {
+            List<LectureDTO> allLectures= lectureCommands.getAllLectures();
+            return ResponseEntity.status(HttpStatus.OK).body(allLectures);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
