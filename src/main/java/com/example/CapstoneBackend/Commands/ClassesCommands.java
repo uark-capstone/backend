@@ -1,5 +1,9 @@
 package com.example.CapstoneBackend.Commands;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import com.example.CapstoneBackend.DTO.ClassesDTO;
 import com.example.CapstoneBackend.Entity.ClassesEntity;
 import com.example.CapstoneBackend.HelperClasses.CustomExceptions;
@@ -28,11 +32,13 @@ public class ClassesCommands {
 
     }
 
-    // GETTING CLASS BY PROFESSORID
-    public ClassesDTO getClassByProfessorID(int professorid) {
-        ClassesDTO classesDTO = new ClassesDTO();
-        Optional<ClassesEntity> classesEntity = classesRepository.findByprofessorid(professorid);
-        if (!classesEntity.isPresent()) {
+    // GETTING CLASSES BY PROFESSORID
+    public List<ClassesDTO> getClassesByProfessorID(int professorid) {
+       
+        List<ClassesDTO> allClassesDTO = new ArrayList<ClassesDTO>(); 
+
+        List<ClassesEntity> classesEntity = classesRepository.findAllByprofessorid(professorid);
+        if (classesEntity.isEmpty()) {
             throw new CustomExceptions.NotFoundException("Class");
         }
 
@@ -41,8 +47,12 @@ public class ClassesCommands {
         // doing userDTO.setName(entity.getName()) on every single variable
 
         ModelMapper modelMapper = new ModelMapper();
-        classesDTO = modelMapper.map(classesEntity.get(), ClassesDTO.class);
-        return classesDTO;
+
+        allClassesDTO = classesEntity.stream().map(entity -> modelMapper.map(entity, ClassesDTO.class))
+        .collect(Collectors.toList());
+return allClassesDTO;
+
+
     }
 
     // GETTING CLASS BY COURSENAME
@@ -60,19 +70,19 @@ public class ClassesCommands {
 
     // UPDATE FIELDS ON A USER
 
-    // DELETE CLASS VIA PROFESSORID
-    public void deleteClass(int professorid) {
-        Optional<ClassesEntity> classesEntity = classesRepository.findByprofessorid(professorid);
-        if (classesEntity.isPresent()) {
-            classesRepository.delete(classesEntity.get());
-        } else {
-            throw new CustomExceptions.NoDeleteException("Class");
-        }
-    }
+    // // DELETE CLASS VIA PROFESSORID
+    // public void deleteClass(int professorid) {
+    //     Optional<ClassesEntity> classesEntity = classesRepository.findByprofessorid(professorid);
+    //     if (classesEntity.isPresent()) {
+    //         classesRepository.delete(classesEntity.get());
+    //     } else {
+    //         throw new CustomExceptions.NoDeleteException("Class");
+    //     }
+    // }
 
-    // DELETE CLASS VIA COURSENAME
-    public void deleteClass(String courseName) {
-        Optional<ClassesEntity> classesEntity = classesRepository.findBycourseName(courseName);
+    // DELETE CLASS VIA COURSENAME- should prob be  by ID not course name 
+    public void deleteClass(int classID) {
+        Optional<ClassesEntity> classesEntity = classesRepository.findById(classID);
         if (classesEntity.isPresent()) {
             classesRepository.delete(classesEntity.get());
         } else {

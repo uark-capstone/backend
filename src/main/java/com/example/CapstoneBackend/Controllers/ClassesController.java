@@ -1,5 +1,7 @@
 package com.example.CapstoneBackend.Controllers;
 
+import java.util.List;
+
 import com.example.CapstoneBackend.Commands.ClassesCommands;
 import com.example.CapstoneBackend.DTO.ClassesDTO;
 import com.example.CapstoneBackend.Entity.ClassesEntity;
@@ -45,13 +47,13 @@ public class ClassesController {
 
     }
 
-    // GETS CLASS BY PROFESSORID
-    @RequestMapping(value = "/getClassByProfessorID", params = { "professorid" }, method = RequestMethod.GET)
+    // GETS CLASSES BY PROFESSORID
+    @RequestMapping(value = "/getClassesByProfessorID", params = { "professorid" }, method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<Object> getByProfessorID(@RequestParam("professorid") int professorid) {
 
         try {
-            ClassesDTO classesDTO = classesCommands.getClassByProfessorID(professorid);
+            List<ClassesDTO> classesDTO = classesCommands.getClassesByProfessorID(professorid);
             return ResponseEntity.status(HttpStatus.OK).body(classesDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -72,12 +74,12 @@ public class ClassesController {
     }
 
     // DELETE CLASS VIA PROFESSORID
-    @RequestMapping(value = "/deleteClassByProfessorID", params = { "professorid" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteClass", params = { "classID" }, method = RequestMethod.GET)
     @ResponseBody
-    ResponseEntity<Object> deleteClass(@RequestParam("professorid") int professorid) {
+    ResponseEntity<Object> deleteClass(@RequestParam("classID") int classID) {
         try{
-            classesCommands.deleteClass(professorid); 
-            return ResponseEntity.status(HttpStatus.OK).body("Class tied to "+professorid+" has been deleted.");
+            classesCommands.deleteClass(classID); 
+            return ResponseEntity.status(HttpStatus.OK).body("Class has been deleted.");
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
