@@ -78,9 +78,9 @@ public class ClassesController {
     // DELETE CLASS VIA PROFESSORID
     @RequestMapping(value = "/deleteClass", params = { "classID" }, method = RequestMethod.GET)
     @ResponseBody
-    ResponseEntity<Object> deleteClass(@RequestParam("classID") int classID) {
+    ResponseEntity<Object> deleteClass(@RequestParam("classID") String classID) {
         try{
-            classesCommands.deleteClass(classID); 
+            classesCommands.deleteClassbyID(classID); 
             return ResponseEntity.status(HttpStatus.OK).body("Class has been deleted.");
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

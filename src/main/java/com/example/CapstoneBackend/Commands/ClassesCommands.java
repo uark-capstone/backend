@@ -84,7 +84,7 @@ return allClassesDTO;
 
     // DELETE CLASS VIA COURSENAME- should prob be  by ID not course name 
     @Transactional
-    public void deleteClass(String classID) {
+    public void deleteClassbyID(String classID) {
         try{
             classesRepository.deleteById(classID);
         }catch(Exception e){
