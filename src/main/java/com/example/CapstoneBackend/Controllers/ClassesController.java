@@ -93,7 +93,7 @@ public class ClassesController {
     @ResponseBody
     ResponseEntity<Object> deleteClassbyID(@RequestParam("classID") String courseID) {
         try{
-            classesCommands.deleteClass(courseID);
+            classesCommands.deleteClassbyID(courseID);
             return ResponseEntity.status(HttpStatus.OK).body("Class has been deleted.");
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
