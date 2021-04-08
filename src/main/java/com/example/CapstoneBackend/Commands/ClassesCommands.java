@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import com.example.CapstoneBackend.DTO.ClassesDTO;
 import com.example.CapstoneBackend.Entity.ClassesEntity;
 import com.example.CapstoneBackend.HelperClasses.CustomExceptions;
@@ -81,11 +83,12 @@ return allClassesDTO;
     // }
 
     // DELETE CLASS VIA COURSENAME- should prob be  by ID not course name 
-    public void deleteClass(int classID) {
-        Optional<ClassesEntity> classesEntity = classesRepository.findById(classID);
-        if (classesEntity.isPresent()) {
-            classesRepository.delete(classesEntity.get());
-        } else {
+    @Transactional
+    public void deleteClass(String classID) {
+        try{
+            classesRepository.deleteById(classID);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
             throw new CustomExceptions.NoDeleteException("Class");
         }
     }

@@ -2,6 +2,8 @@ package com.example.CapstoneBackend.Controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.example.CapstoneBackend.Commands.ClassesCommands;
 import com.example.CapstoneBackend.DTO.ClassesDTO;
 import com.example.CapstoneBackend.Entity.ClassesEntity;
@@ -86,12 +88,13 @@ public class ClassesController {
     }
 
     // DELETE CLASS VIA COURSENAME
-    @RequestMapping(value = "/deleteClassByCourseName", params = { "courseName" }, method = RequestMethod.GET)
+
+    @RequestMapping(value = "/deleteCourseByID", params = { "classID" }, method = RequestMethod.GET)
     @ResponseBody
-    ResponseEntity<Object> deleteClass(@RequestParam("courseName") String courseName) {
+    ResponseEntity<Object> deleteClassbyID(@RequestParam("classID") String courseID) {
         try{
-            classesCommands.deleteClass(courseName); 
-            return ResponseEntity.status(HttpStatus.OK).body("Class "+courseName+" been deleted.");
+            classesCommands.deleteClass(courseID);
+            return ResponseEntity.status(HttpStatus.OK).body("Class has been deleted.");
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
