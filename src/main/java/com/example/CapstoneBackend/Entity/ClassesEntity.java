@@ -48,16 +48,6 @@ public class ClassesEntity {
         this.studentCount = studentCount;
     }
 
-    @Column(name = "password")
-    private String password;
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     /**
      * Will probably need to add more constructors here as we start to implement
