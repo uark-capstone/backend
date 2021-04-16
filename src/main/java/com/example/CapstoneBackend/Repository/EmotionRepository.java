@@ -1,7 +1,6 @@
 package com.example.CapstoneBackend.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import com.example.CapstoneBackend.Entity.EmotionEntity;

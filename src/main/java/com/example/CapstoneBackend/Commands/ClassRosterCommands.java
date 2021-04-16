@@ -29,6 +29,17 @@ public class ClassRosterCommands {
 
     }
 
+
+    // Create class roster from csv
+    public void createNewCSVClassRoster(ClassRosterEntity paramClassRosterEntity) {
+        Optional<ClassRosterEntity> classRosterEntity = classRosterRepository.findByClassIdAndUserId(paramClassRosterEntity.getclassId(), 
+                                                                                paramClassRosterEntity.getuserId());
+        if(!classRosterEntity.isPresent()) {
+            classRosterRepository.save(paramClassRosterEntity);
+        } else {
+            throw new CustomExceptions.CreationException("ClassRoster");
+        }
+    }
     // GETTING CLASSROSTER BY CLASSID
     public ClassRosterDTO getClassRosterByClassID(String classId) {
         ClassRosterDTO classRosterDTO = new ClassRosterDTO();

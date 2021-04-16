@@ -20,6 +20,8 @@
 
 	<dependencies>
 
+
+
 	<dependency>
   <groupId>org.modelmapper</groupId>
   <artifactId>modelmapper</artifactId>
@@ -50,6 +52,19 @@
      <groupId>mysql</groupId>
      <artifactId>mysql-connector-java</artifactId>
 </dependency>
+
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-csv</artifactId>
+	<version>1.8</version>
+</dependency>
+
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.0</version>
+</dependency>
+
 <dependency>
   <groupId>org.apache.tomcat.maven</groupId>
   <artifactId>tomcat7-maven-plugin</artifactId>

@@ -2,6 +2,8 @@ package com.example.CapstoneBackend.Entity;
 
 import javax.persistence.*;
 
+import com.opencsv.bean.CsvBindByName;
+
 @Entity
 @Table(name = "class_roster")
 public class ClassRosterEntity {
@@ -21,6 +23,7 @@ public class ClassRosterEntity {
         this.id = id;
     }
 
+    @CsvBindByName
     @Column(name="class_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public String classId;
@@ -33,6 +36,7 @@ public class ClassRosterEntity {
         this.classId = classId;
     }
 
+    @CsvBindByName
     @Column(name="user_id")
     private int userId;
 
