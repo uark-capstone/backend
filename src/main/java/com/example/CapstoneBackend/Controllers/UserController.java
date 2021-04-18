@@ -4,6 +4,11 @@ import com.example.CapstoneBackend.Commands.UserCommands;
 import com.example.CapstoneBackend.DTO.UserDTO;
 import com.example.CapstoneBackend.Entity.UserEntity;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.List;
+
 import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 
@@ -15,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller that hosts all endpoints related to: USERS
@@ -30,6 +40,32 @@ public class UserController {
     // We can pass the UserEntity as a param because Springboot maps the values of
     // the json to
     // fields in the UserEntity class
+
+    @PostMapping ("/uploadUsers")
+    @ResponseBody
+    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) {
+
+        if(file.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File is empty.");
+        } else {
+
+        try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            CsvToBean<UserEntity> csvToBean = new CsvToBeanBuilder<UserEntity>(reader)
+            .withType(UserEntity.class)
+            .withIgnoreLeadingWhiteSpace(true)
+            .build();
+
+            List<UserEntity> users = csvToBean.parse();
+            for(UserEntity user : users) {
+                userCommands.createNewCSVUser(user);
+
+            }
+            return ResponseEntity.status(HttpStatus.OK).body("Users added!");
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+}
 
     // CREATE USER
     @RequestMapping(value = "/addUser", consumes = { MediaType.APPLICATION_JSON_VALUE,

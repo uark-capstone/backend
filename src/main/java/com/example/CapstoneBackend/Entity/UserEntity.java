@@ -2,6 +2,8 @@ package com.example.CapstoneBackend.Entity;
 
 import javax.persistence.*;
 
+import com.opencsv.bean.CsvBindByName;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -28,6 +30,7 @@ public class UserEntity {
         return this.id;
     }
 
+    @CsvBindByName
     @Column(name = "classification")
     private int classification;
 
@@ -39,6 +42,7 @@ public class UserEntity {
         this.classification = classification;
     }
 
+    @CsvBindByName
     @Column(name = "name")
     private String name;
 
@@ -50,6 +54,7 @@ public class UserEntity {
         this.name = name;
     }
 
+    @CsvBindByName
     @Column(name = "email")
     private String email;
 
@@ -61,6 +66,7 @@ public class UserEntity {
         this.email = email;
     }
 
+    @CsvBindByName
     @Column(name = "password")
     private String password;
 

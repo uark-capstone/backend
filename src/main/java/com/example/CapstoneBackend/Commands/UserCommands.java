@@ -32,6 +32,16 @@ public class UserCommands {
 
     }
 
+    // Create user from csv
+    public void createNewCSVUser(UserEntity paramUserEntity) {
+        Optional<UserEntity> userEntity = userRepository.findByemail(paramUserEntity.getEmail());
+        if(!userEntity.isPresent()) {
+            userRepository.save(paramUserEntity);
+        } else {
+            throw new CustomExceptions.CreationException("User");
+        }
+    }
+
     // GETTING USER BY ID
     public UserDTO getUserByID(int id) {
         UserDTO userDTO = new UserDTO();
