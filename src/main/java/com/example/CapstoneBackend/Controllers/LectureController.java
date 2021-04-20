@@ -62,4 +62,15 @@ public class LectureController {
         }
     }
 
+    @RequestMapping(value = "/getAllLecturesbyID", method = RequestMethod.GET, params = { "class_id" })
+    @ResponseBody
+    ResponseEntity<Object> findAllLecturesByID(@RequestParam("class_id") int class_id)  {
+        try {
+            List<LectureDTO> allLectures= lectureCommands.getLecturesByID(class_id);
+            return ResponseEntity.status(HttpStatus.OK).body(allLectures);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }

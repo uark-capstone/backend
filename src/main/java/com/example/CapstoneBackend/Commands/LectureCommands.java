@@ -60,6 +60,19 @@ public class LectureCommands {
         }
     }
 
+    public List<LectureDTO> getLecturesByID(int class_id) {
+        List<LectureDTO> listLectureDTO= new ArrayList<LectureDTO>();  
+        List<LectureEntity> lectureEntities = lectureRepository.findAllByclassID(class_id);
+        if (lectureEntities.size()!= 0 ) {
+            ModelMapper modelMapper = new ModelMapper();
+        listLectureDTO = lectureEntities.stream().map(lectureEntity -> modelMapper.map(lectureEntity, LectureDTO.class))
+                .collect(Collectors.toList());
+        return listLectureDTO; 
+        } else {
+            throw new CustomExceptions.NoDeleteException("Lectures");
+        }
+    }
+
 
 }
 //alldfkjakl

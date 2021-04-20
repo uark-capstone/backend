@@ -17,4 +17,8 @@ public interface LectureRepository extends CrudRepository<LectureEntity, Integer
     
     List<LectureEntity> findAll(); 
 
+    List<LectureEntity> findAllByclassID(int class_id); 
+
+    
+
 }
