@@ -2,6 +2,16 @@ package com.example.CapstoneBackend.DTO;
 
 public class ClassesDTO {
 
+    int id;
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     int professorid;
 
     public int getprofessorId() {
